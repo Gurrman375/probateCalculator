@@ -1,30 +1,3 @@
-<html>
-<head></head>
-<body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <input type="text" id='total'> <input type="submit" onclick="probateCalculator(document.getElementById('total').value.replace(/[^0-9\.]+/g,''))"> <br>
-    <p id="test"></p>
-    <div>
-        <head>4% of first $100,000:</head>
-        <p id="4perc"></p>
-    </div>
-    <div>
-        <head>3% of the next $100,000:</head>
-        <p id="3perc"></p>
-    </div>
-    <div>
-        <head>2% of the next $800,000:</head>
-        <p id="2perc"></p>
-    </div>
-    <div>
-        <head>1% of the next $9,000,000:</head>
-        <p id="1perc"></p>
-    </div>
-    <div>
-        <head>0.5% of the next $15,000,000:</head>
-        <p id="hperc"></p>
-    </div>
-    <script>
     function probateCalculator(total){
         let probateNumber = 0;
         let displayMessage;
@@ -102,6 +75,3 @@
             document.getElementById("test").innerHTML = "$" + probateNumber.toFixed(2);
         }
     }
-    </script>
-</body>
-</html>
