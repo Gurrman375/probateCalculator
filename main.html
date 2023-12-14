@@ -1,0 +1,107 @@
+<html>
+<head></head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <input type="text" id='total'> <input type="submit" onclick="probateCalculator(document.getElementById('total').value.replace(/[^0-9\.]+/g,''))"> <br>
+    <p id="test"></p>
+    <div>
+        <head>4% of first $100,000:</head>
+        <p id="4perc"></p>
+    </div>
+    <div>
+        <head>3% of the next $100,000:</head>
+        <p id="3perc"></p>
+    </div>
+    <div>
+        <head>2% of the next $800,000:</head>
+        <p id="2perc"></p>
+    </div>
+    <div>
+        <head>1% of the next $9,000,000:</head>
+        <p id="1perc"></p>
+    </div>
+    <div>
+        <head>0.5% of the next $15,000,000:</head>
+        <p id="hperc"></p>
+    </div>
+    <script>
+    function probateCalculator(total){
+        let probateNumber = 0;
+        let displayMessage;
+        let identity;
+        if(total == 0){
+            window.alert("Invaild Range");
+        }
+        else{
+            if(total > 25000000){
+                displayMessage = "Invalid Number: \nEnter a number between 100,001.00 - 25,000,000.00";
+                window.alert(displayMessage);
+            }
+            else if((25000000 >= total) && (total > 10000000)){ // 10
+                probateNumber = 113000; 
+                total -= 10000000; 
+                total *= 0.005;
+                probateNumber += total;
+                identity = 4;
+            }
+            else if((10000000 >= total) && (total > 1000000)){
+                probateNumber = 23000;
+                total -= 1000000;
+                total *= 0.01;
+                probateNumber += total;
+                identity = 3;
+            }
+            else if((1000000 >= total) && (total > 200000)){
+                probateNumber = 7000;
+                total -= 200000;
+                total *= 0.02;
+                probateNumber += total;
+                identity = 2;
+            }
+            else if((200000 >= total) && (total > 100000)){
+                probateNumber = 4000;
+                total -= 100000;
+                total *= 0.03;
+                probateNumber += total;
+                identity = 1;
+            }
+            else{
+                displayMessage = "Invalid Number: \nEnter a number between 100,001.00 - 25,000,000.00";
+                window.alert(displayMessage);
+            }
+            switch(identity){
+                case 1:
+                    document.getElementById("4perc").innerHTML = "$" + 4000.00;
+                    document.getElementById("3perc").innerHTML = "$" + total.toFixed(2);
+                    document.getElementById("2perc").innerHTML = "$" + 0.00;
+                    document.getElementById("1perc").innerHTML = "$" + 0.00;
+                    document.getElementById("hperc").innerHTML = "$" + 0.00;
+                    break;
+                case 2:
+                    document.getElementById("4perc").innerHTML = "$" + 4000.00;
+                    document.getElementById("3perc").innerHTML = "$" + 3000.00;
+                    document.getElementById("2perc").innerHTML = "$" + total.toFixed(2);
+                    document.getElementById("1perc").innerHTML = "$" + 0.00;
+                    document.getElementById("hperc").innerHTML = "$" + 0.00;
+                    break;
+                case 3:
+                    document.getElementById("4perc").innerHTML = "$" + 4000.00;
+                    document.getElementById("3perc").innerHTML = "$" + 3000.00;
+                    document.getElementById("2perc").innerHTML = "$" + 16000.00;
+                    document.getElementById("1perc").innerHTML = "$" + total.toFixed(2);
+                    document.getElementById("hperc").innerHTML = "$" + 0.00;
+                    break;
+                case 4:
+                    document.getElementById("4perc").innerHTML = "$" + 4000;
+                    document.getElementById("3perc").innerHTML = "$" + 3000;
+                    document.getElementById("2perc").innerHTML = "$" + 16000;
+                    document.getElementById("1perc").innerHTML = "$" + 90000;
+                    document.getElementById("hperc").innerHTML = "$" + total.toFixed(2);
+                    break;
+            }
+            document.getElementById("test").innerHTML = "$" + probateNumber.toFixed(2);
+        }
+    }
+    </script>
+</body>
+</html>
